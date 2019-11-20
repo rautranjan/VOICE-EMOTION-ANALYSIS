@@ -27,7 +27,14 @@ class CNN:
         for voicePattern in os.listdir(source_path):
             for actor in os.listdir(os.path.join(source_path, voicePattern)):
                 for file in os.listdir(os.path.join(source_path, voicePattern, actor)):
-                    y.append(int(file[7:8]) - 1)
+                    if int(file[7:8]) in [1,2]:
+                        y.append(0)
+                    elif int(file[7:8]) in [4,6]:
+                        y.append(1)
+                    elif int(file[7:8]) in [3,8]:
+                        y.append(2)
+                    elif int(file[7:8]) in [5,7]:
+                        y.append(3)
                     arr, sampling_rate = librosa.load(os.path.join(source_path, voicePattern, actor, file))
                     mfcc_values = np.array(np.mean(librosa.feature.mfcc(y=arr, sr=sampling_rate, n_mfcc=40).T, axis=0))
                     X.append(mfcc_values)

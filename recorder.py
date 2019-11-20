@@ -39,7 +39,8 @@ def record_speech(location="recordings"):
 
 
 def get_Emotion(num):
-    emotion = ["Neutral", "Calm", "Happy", "Sad", "Angry", "Fearful", "Disgust", "Surprised"]
+    # emotion = ["Neutral", "Calm", "Happy", "Sad", "Angry", "Fearful", "Disgust", "Surprised"]
+    emotion = ["Neutral", "Sad", "Happy", "Angry"]
     return emotion[num]
 
 
