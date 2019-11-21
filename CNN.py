@@ -27,11 +27,13 @@ class CNN:
         for voicePattern in os.listdir(source_path):
             for actor in os.listdir(os.path.join(source_path, voicePattern)):
                 for file in os.listdir(os.path.join(source_path, voicePattern, actor)):
-                    if int(file[7:8]) in [1,2]:
+                    if int(file[7:8]) in [6,8]:
+                        continue
+                    elif int(file[7:8]) in [1,2]:
                         y.append(0)
-                    elif int(file[7:8]) in [4,6]:
+                    elif int(file[7:8]) in [4]:
                         y.append(1)
-                    elif int(file[7:8]) in [3,8]:
+                    elif int(file[7:8]) in [3]:
                         y.append(2)
                     elif int(file[7:8]) in [5,7]:
                         y.append(3)
@@ -66,7 +68,7 @@ class CNN:
         return os.path.join(location, name)
 
 
-model_name = "cnn_SER.h5"
+model_name = "cnn.h5"
 model_location = "C:/Users/ranja/PycharmProjects/VOICE-EMOTION-ANALYSIS/Model"
 
 if __name__ == "__main__":

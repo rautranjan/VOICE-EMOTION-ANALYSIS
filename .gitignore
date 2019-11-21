@@ -1,2 +1,5 @@
 # ignore all IDE files
 /.idea
+/.recordings
+/.log.txt
+/.VoiceMFCC.ipynb

@@ -21,7 +21,7 @@ class CNNModel:
         self.__model.add(Activation('relu'))
         self.__model.add(Dropout(0.1))
         self.__model.add(Flatten())
-        self.__model.add(Dense(8))
+        self.__model.add(Dense(4))
         self.__model.add(Activation('softmax'))
         # opt = keras.optimizers.rmsprop(lr=0.00005, rho=0.9, epsilon=None, decay=0.0)
         # self.__model.compile(loss='sparse_categorical_crossentropy', optimizer=opt,
