@@ -1,16 +1,17 @@
 import os
 import time
 
+import keras
 import librosa
 import numpy as np
 import sounddevice as sd
 from scipy.io.wavfile import write
 
-from CNN import CNN
-
 
 def load_model(model_name, model_location):
-    return CNN.get_model(model_name, model_location)
+    model = keras.models.load_model(os.path.join(model_location, model_name))
+    model.summary()
+    return model
 
 
 def reformat_data(file):
@@ -28,7 +29,7 @@ def record_speech(location="recordings"):
         os.makedirs(location)
     fs = 22050  # Sample rate
     seconds = 3  # Duration of recording
-    print("Starting myrecording")
+    print("Starting Recording")
     myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=2)
 
     sd.wait()  # Wait until recording is finished
@@ -39,15 +40,24 @@ def record_speech(location="recordings"):
 
 
 def get_Emotion(num):
-    # emotion = ["Neutral", "Calm", "Happy", "Sad", "Angry", "Fearful", "Disgust", "Surprised"]
     emotion = ["Neutral", "Sad", "Happy", "Angry"]
     return emotion[num]
 
 
-model_name = "cnn.h5"
-model_location = "C:/Users/ranja/PycharmProjects/VOICE-EMOTION-ANALYSIS/Model"
+lstm_model_name = "LSTM.h5"
+cnn_model_name = "CNN.h5"
+model_location = "C:/Users/ranja/PycharmProjects/VOICE-EMOTION-ANALYSIS/ModelStore"
 
-model = load_model(model_name, model_location)
+
+model_type  = int(input("\nPlease select type of Model from below options :\n\t1) CNN\t2) LSTM\n"))
+
+if model_type==1:
+    model = load_model(cnn_model_name, model_location)
+    print("CNN Model has been Selected")
+else:
+    model = load_model(lstm_model_name, model_location)
+    print("LSTM Model has been Selected")
+
 
 print("\n--------------------------------------------------\n")
 location = "recordings"
