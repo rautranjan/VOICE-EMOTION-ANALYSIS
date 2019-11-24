@@ -16,6 +16,7 @@ class CNNModel(Model.Model):
         self.model.add(Conv1D(128, 5, padding='same', ))
         self.model.add(Activation('relu'))
         self.model.add(Dropout(0.1))
+        self.model.add(MaxPooling1D(pool_size=(2)))
         self.model.add(Flatten())
         self.model.add(Dense(4))
         self.model.add(Activation('softmax'))
