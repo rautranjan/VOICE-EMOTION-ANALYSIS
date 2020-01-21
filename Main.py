@@ -10,6 +10,7 @@ from sklearn.model_selection import train_test_split
 
 from Model.CNN import CNNModel
 from Model.LSTM import LSTMModel
+from Model.ANN import ANNModel
 
 
 class Main:
@@ -94,31 +95,45 @@ class Main:
 if __name__ == "__main__":
     cnn_model_name = "CNN.h5"
     lstm_model_name = "LSTM.h5"
+    ann_model_name = "ANN.h5"
     model_location = "C:/Users/ranja/PycharmProjects/VOICE-EMOTION-ANALYSIS/ModelStore"
     source_path = "C:/Users/ranja/PycharmProjects/VOICE-EMOTION-ANALYSIS/RAVDESS"
 
-    print('\n Working on CNN Model \n')
-    # Work on CNN
+    # print('\n Working on CNN Model \n')
+    # # Work on CNN
+    #
+    # cnn_main = Main(CNNModel())
+    # X_train, X_test, y_train, y_test = cnn_main.prepare_dataset(source_path)
+    # training_details = cnn_main.train_save_model(X_train=X_train, X_test=X_test, y_train=y_train, y_test=y_test,
+    #                                              name=cnn_model_name, location=model_location, batch_size=16,
+    #                                              epochs=1000)
+    #
+    # cnn_main.plot_graphs(training_details, 'CNN')
+    #
+    # cnn_main.print_reports(X_test, y_test)
+    #
+    # print('\n Working on LSTM Model \n')
+    # # Work on LSTM
+    #
+    # lstm_main = Main(LSTMModel())
+    # X_train, X_test, y_train, y_test = lstm_main.prepare_dataset(source_path)
+    # training_details = lstm_main.train_save_model(X_train=X_train, X_test=X_test, y_train=y_train, y_test=y_test,
+    #                                               name=lstm_model_name, location=model_location, batch_size=16,
+    #                                               epochs=1000)
+    #
+    # lstm_main.plot_graphs(training_details, 'LSTM')
+    #
+    # lstm_main.print_reports(X_test, y_test)
+    #
+    # # Work on ANN
 
-    cnn_main = Main(CNNModel())
-    X_train, X_test, y_train, y_test = cnn_main.prepare_dataset(source_path)
-    training_details = cnn_main.train_save_model(X_train=X_train, X_test=X_test, y_train=y_train, y_test=y_test,
-                                                 name=cnn_model_name, location=model_location, batch_size=16,
-                                                 epochs=1000)
-
-    cnn_main.plot_graphs(training_details, 'CNN')
-
-    cnn_main.print_reports(X_test, y_test)
-
-    print('\n Working on LSTM Model \n')
-    # Work on LSTM
-
-    lstm_main = Main(LSTMModel())
-    X_train, X_test, y_train, y_test = lstm_main.prepare_dataset(source_path)
-    training_details = lstm_main.train_save_model(X_train=X_train, X_test=X_test, y_train=y_train, y_test=y_test,
+    ann_main = Main(ANNModel())
+    X_train, X_test, y_train, y_test = ann_main.prepare_dataset(source_path)
+    X_train.shape
+    training_details = ann_main.train_save_model(X_train=X_train, X_test=X_test, y_train=y_train, y_test=y_test,
                                                   name=lstm_model_name, location=model_location, batch_size=16,
                                                   epochs=1000)
 
-    lstm_main.plot_graphs(training_details, 'LSTM')
+    ann_main.plot_graphs(training_details, 'ANN')
 
-    lstm_main.print_reports(X_test, y_test)
+    ann_main.print_reports(X_test, y_test)
